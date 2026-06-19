@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+namespace ConsoleApp12
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string connection_string = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_PV_521;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            Connector connector = new Connector(connection_string);
+
+            string cmd = "SELECT movie_id,title,release_date,first_name,last_name FROM Movies,Directors WHERE director=director_id";
+            connector.Select(cmd);
+            Console.WriteLine($"Kolichestvo zapisei:{connector.Scalar("SELECT COUNT (*) FROM Movies")}");
+            connector.Select("SELECT * FROM Directors");
+            Console.WriteLine($"Kolichestvo zapisei:{connector.Scalar("SELECT COUNT (*) FROM Directors")}");
+            //command.CommandText = "SELECT COUNT(*) FROM Movies";
+            //Console.WriteLine($"Kolichestvo zapisei:\t{command.ExecuteScalar()}");
+            //connection.Close();
+        }
+       
+    }
+}
