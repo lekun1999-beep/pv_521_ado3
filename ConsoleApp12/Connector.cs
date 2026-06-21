@@ -12,6 +12,7 @@ namespace ConsoleApp12
         SqlConnection connection;
         public Connector(string connection_string)
         {
+            Console.WriteLine(connection_string);
             this.connection_string = connection_string;
             connection = new SqlConnection(connection_string);
         }
@@ -19,13 +20,14 @@ namespace ConsoleApp12
         {
             connection.Open();
             SqlCommand command = new SqlCommand(cmd, connection);
+
             SqlDataReader reader = command.ExecuteReader();
             for (int i = 0; i < reader.FieldCount; i++)
-                Console.Write(reader.GetName(i)+"\t");
+                Console.Write(reader.GetName(i) + "\t");
             Console.WriteLine();
-            while(reader.Read())
+            while (reader.Read())
             {
-                for (int i = 0;i < reader.FieldCount;i++)
+                for (int i = 0; i < reader.FieldCount; i++)
                     Console.Write($"{reader[i]}\t\t");
                 Console.WriteLine();
             }
@@ -37,6 +39,7 @@ namespace ConsoleApp12
                 string cmd = $"SELECT {fields} FROM {tables}";
                 if (condition != " ") cmd += $" WHERE {condition}";
                 cmd += ";";
+                Select(cmd);
         }
        public object Scalar(string cmd)
         {
