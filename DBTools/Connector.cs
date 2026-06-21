@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace DBTools
 {
-    class Connector
+    public class Connector
     {
         string connection_string;
         SqlConnection connection;
