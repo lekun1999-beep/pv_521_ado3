@@ -37,6 +37,8 @@
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageGroups.SuspendLayout();
             this.tabPageDirections.SuspendLayout();
@@ -45,6 +47,8 @@
             // 
             // statusStrip
             // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 433);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(892, 22);
@@ -143,6 +147,12 @@
             this.tabPageTeachers.Text = "Teachers";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
             // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
+            this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -152,6 +162,8 @@
             this.Controls.Add(this.statusStrip);
             this.Name = "MainForm";
             this.Text = "Academy PV_521";
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabPageGroups.ResumeLayout(false);
             this.tabPageDirections.ResumeLayout(false);
@@ -172,6 +184,7 @@
         private System.Windows.Forms.TabPage tabPageDisciplines;
         private System.Windows.Forms.DataGridView dgvDirections;
         private System.Windows.Forms.TabPage tabPageTeachers;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
 
