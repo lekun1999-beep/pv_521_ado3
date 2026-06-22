@@ -44,6 +44,7 @@
             this.cbGroupsDirection = new System.Windows.Forms.ComboBox();
             this.cbStudentsGroup = new System.Windows.Forms.ComboBox();
             this.cbStudentsDirection = new System.Windows.Forms.ComboBox();
+            this.buttonAddStudent = new System.Windows.Forms.Button();
             this.statusStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageStudents.SuspendLayout();
@@ -91,6 +92,7 @@
             // 
             // tabPageStudents
             // 
+            this.tabPageStudents.Controls.Add(this.buttonAddStudent);
             this.tabPageStudents.Controls.Add(this.cbStudentsDirection);
             this.tabPageStudents.Controls.Add(this.cbStudentsGroup);
             this.tabPageStudents.Controls.Add(this.dgvStudents);
@@ -237,6 +239,16 @@
             this.cbStudentsDirection.TabIndex = 3;
             this.cbStudentsDirection.SelectedIndexChanged += new System.EventHandler(this.cbStudentsDirection_SelectedIndexChanged);
             // 
+            // buttonAddStudent
+            // 
+            this.buttonAddStudent.Location = new System.Drawing.Point(786, 6);
+            this.buttonAddStudent.Name = "buttonAddStudent";
+            this.buttonAddStudent.Size = new System.Drawing.Size(92, 23);
+            this.buttonAddStudent.TabIndex = 4;
+            this.buttonAddStudent.Text = "Добавить";
+            this.buttonAddStudent.UseVisualStyleBackColor = true;
+            this.buttonAddStudent.Click += new System.EventHandler(this.buttonAddStudent_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +294,7 @@
         private System.Windows.Forms.ComboBox cbGroupsDirection;
         private System.Windows.Forms.ComboBox cbStudentsDirection;
         private System.Windows.Forms.ComboBox cbStudentsGroup;
+        private System.Windows.Forms.Button buttonAddStudent;
     }
 }
 
