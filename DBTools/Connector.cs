@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 namespace DBTools
 {
     public class Connector
@@ -145,5 +147,41 @@ $"SELECT {table.Substring(0, table.Length - 1)}_name,{table.Substring(0, table.L
             cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
             Insert(cmd);
         }
+        public void Update(string cmd)
+        {
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public void UploadPhoto(byte[] image, int id, string field, string table)
+        {
+            string cmd = $"UPDATE {table} SET {field}=@image WHERE {GetPrimaryKeyColumnName(table)}={id}";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.Add("@image", SqlDbType.VarBinary).Value = image;
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+        public Image DownloadPhoto(string table, string field, int id)
+        {
+            Image photo = null;
+            string cmd = $"SELECT {field} FROM {table} WHERE {GetPrimaryKeyColumnName(table)}={id}";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                byte[] data = reader[0] as byte[];
+                if (data != null)
+                {
+                    MemoryStream ms = new MemoryStream(data);
+                    photo = Image.FromStream(ms);
+                }
+            }
+            connection.Close();
+            return photo;
+        }
     }
 }
+

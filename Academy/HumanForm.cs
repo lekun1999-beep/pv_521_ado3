@@ -8,19 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
-using DBTools;
 using System.Reflection.Emit;
-
 namespace Academy
 {
     public partial class HumanForm : Form
     {
         internal Models.Human human;
-        //protected DBTools.Connector connector;
-        public HumanForm()
+        protected HumanForm()
         {
             InitializeComponent();
-            //connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
         }
         protected void Extract()
         {
@@ -38,16 +34,23 @@ namespace Academy
         protected virtual void buttonOK_Click(object sender, EventArgs e)
         {
             human = new Models.Human
-            (
-            labelID.Text == "" ? 0 : Convert.ToInt32(labelID.Text.Split(':').Last()),
+            (labelID.Text == "" ? 0 : Convert.ToInt32(labelID.Text.Split(':').Last()),
             tbLastName.Text,
-            tbFirstName.Text,
-            tbMiddleName.Text,
-            dtpBirthDate.Value.ToString("yyyy-MM-dd"),
-            tbEmail.Text,
-            tbPhone.Text,
-            pbPhoto.Image
-            );
+                tbFirstName.Text,
+                tbMiddleName.Text,
+                dtpBirthDate.Value.ToString("yyyy-MM-dd"),
+                tbEmail.Text,
+                tbPhone.Text,
+                pbPhoto.Image
+                );
+        }
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter =
+                "JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|All image files|*.png;*.jpg|All files (*.*)|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+                pbPhoto.Image = Image.FromFile(dialog.FileName);
         }
     }
 }
