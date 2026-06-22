@@ -7,14 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using DBTools;
 
 namespace Academy
 {
     public partial class HumanForm : Form
     {
+        //protected DBTools.Connector connector;
         public HumanForm()
         {
             InitializeComponent();
+            //connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
+        }
+
+        protected virtual void buttonOK_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
