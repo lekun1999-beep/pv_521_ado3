@@ -130,7 +130,7 @@ $"SELECT {table.Substring(0, table.Length - 1)}_name,{table.Substring(0, table.L
             for (int i = s_fields[0].Contains("_id") ? 1 : 0; i < s_fields.Length; i++)
             {
                 if (s_values[i] == "") continue;
-                condition += $"{s_fields[i]} = N'{s_values[i]}'";
+                condition += $" {s_fields[i]}=N'{s_values[i]}' ";
                 parsed_fields += s_fields[i];
                 if (i != s_fields.Length - 1) parsed_fields += ",";
                 parsed_values += s_values[i][0] != 'N' && s_values[i].Length > 1 && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
@@ -139,6 +139,7 @@ $"SELECT {table.Substring(0, table.Length - 1)}_name,{table.Substring(0, table.L
                     condition += "AND";
                     parsed_values += ",";
                 }
+
             }
             string cmd = $"IF NOT EXISTS (SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
             cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
